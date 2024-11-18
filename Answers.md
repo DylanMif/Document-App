@@ -1,4 +1,4 @@
-#  1-Environnement
+# 1-Environnement
 
 ## Exercice 1
 
@@ -18,3 +18,8 @@
 
 - Cmd + R : Elle lance un simulateur avec notre application
 - Cmd + Shift + O : Elle permet d'ouvrir un fichier rapidement
+
+
+# 2-Interface simple
+
+
