@@ -7,7 +7,15 @@
 
 import UIKit
 
+extension Int {
+    func formattedSize() -> String {
+        let formatter:ByteCountFormatter = ByteCountFormatter()
+        return formatter.string(fromByteCount: Int64(self))
+    }
+}
+
 class DocumentTableViewController: UITableViewController {
+    
     
     struct DocumentFile {
         var title: String
@@ -53,21 +61,17 @@ class DocumentTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Déqueue la cellule (assurez-vous d'avoir enregistré la cellule avec l'identifier "DocumentCell")
         let cell = tableView.dequeueReusableCell(withIdentifier: "DocumentCell", for: indexPath)
-            
-        // Récupérer le document correspondant à cette ligne
+     
         let document = DocumentTableViewController.documentsFiles[indexPath.row]
+       
+        cell.textLabel?.text = document.title
+        cell.detailTextLabel?.text = "Size: \(document.size.formattedSize())"
             
-        // Configurer le titre et le sous-titre
-        cell.textLabel?.text = document.title  // Titre
-        cell.detailTextLabel?.text = "Size: \(document.size)"  // Sous-titre avec la taille
-            
-        // Si vous avez une image à afficher, vous pouvez la définir ici (par exemple, une image par défaut)
         if let imageName = document.imageName {
-            cell.imageView?.image = UIImage(named: imageName) // Si vous avez une image, la définir ici
+            cell.imageView?.image = UIImage(named: imageName)
         } else {
-            cell.imageView?.image = nil // Aucun image par défaut
+            cell.imageView?.image = nil
         }
             
         return cell

@@ -25,3 +25,16 @@
 ## Exercice 1
 
 L'intérêt d'une propriété static et qu'elle sera la même pour toutes les instances de la classe, elle sera d'ailleurs accessible sans instancier d'objet de cette classe
+
+## Exercice 2
+
+dequeueReusableCell : cette méthode permet de réutiliser les cellules qu'on ne voit plus à l'écran pour afficher les nouvelles
+
+# 4-Navigation
+
+## Exercice 1
+
+Nous venons simplement d'ajouter un NavigationController avant notre TableViewController. Son rôle est d'afficher la bonne page et de gérer le changement de page.
+
+Navigation Controller : Cette classe permet de gérer la pile de vues (pages) et de faciliter la navigation entre elle
+Navigation Bar : C'est une interface visuel permettant d'afficher les informations de navigation (titre, bouton de navigation...) c'est en résumé un context de navigation visuelle
