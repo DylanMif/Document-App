@@ -8,6 +8,27 @@
 import UIKit
 
 class DocumentTableViewController: UITableViewController {
+    
+    struct DocumentFile {
+        var title: String
+        var size: Int
+        var imageName: String? = nil
+        var url: URL
+        var type: String
+    }
+    
+    public static var documentsFiles = [
+        DocumentFile(title: "Document 1", size: 100, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
+        DocumentFile(title: "Document 2", size: 200, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
+        DocumentFile(title: "Document 3", size: 300, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
+        DocumentFile(title: "Document 4", size: 400, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
+        DocumentFile(title: "Document 5", size: 500, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
+        DocumentFile(title: "Document 6", size: 600, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
+        DocumentFile(title: "Document 7", size: 700, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
+        DocumentFile(title: "Document 8", size: 800, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
+        DocumentFile(title: "Document 9", size: 900, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
+        DocumentFile(title: "Document 10", size: 1000, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,23 +44,34 @@ class DocumentTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return DocumentTableViewController.documentsFiles.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        // Déqueue la cellule (assurez-vous d'avoir enregistré la cellule avec l'identifier "DocumentCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DocumentCell", for: indexPath)
+            
+        // Récupérer le document correspondant à cette ligne
+        let document = DocumentTableViewController.documentsFiles[indexPath.row]
+            
+        // Configurer le titre et le sous-titre
+        cell.textLabel?.text = document.title  // Titre
+        cell.detailTextLabel?.text = "Size: \(document.size)"  // Sous-titre avec la taille
+            
+        // Si vous avez une image à afficher, vous pouvez la définir ici (par exemple, une image par défaut)
+        if let imageName = document.imageName {
+            cell.imageView?.image = UIImage(named: imageName) // Si vous avez une image, la définir ici
+        } else {
+            cell.imageView?.image = nil // Aucun image par défaut
+        }
+            
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

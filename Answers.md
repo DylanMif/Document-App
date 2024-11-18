@@ -20,6 +20,8 @@
 - Cmd + Shift + O : Elle permet d'ouvrir un fichier rapidement
 
 
-# 2-Interface simple
+# 3-Délégation
 
+## Exercice 1
 
+L'intérêt d'une propriété static et qu'elle sera la même pour toutes les instances de la classe, elle sera d'ailleurs accessible sans instancier d'objet de cette classe
