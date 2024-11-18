@@ -13,3 +13,8 @@
     - __Info.plist__ : Configuration des métadonnées de l'application
 - La storyboard est une zone où l'on peut configurer l'interface visuel de l'application. Il n'y a pas l'air d'avoir de code à faire mais simplement une interface à utiliser
 - Simulateur : Un simulateur est simplement un téléphone virtuel qui va nous permettre de tester notre application
+
+## Exercice 2
+
+- Cmd + R : Elle lance un simulateur avec notre application
+- Cmd + Shift + O : Elle permet d'ouvrir un fichier rapidement
