@@ -56,10 +56,10 @@
             </objects>
             <point key="canvasLocation" x="1011.4503816793892" y="-28.169014084507044"/>
         </scene>
-        <!--View Controller-->
+        <!--Document View Controller-->
         <scene sceneID="lKT-pB-aJL">
             <objects>
-                <viewController id="yWf-Pa-cqW" sceneMemberID="viewController">
+                <viewController id="yWf-Pa-cqW" customClass="DocumentViewController" customModule="Document_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KVf-Jy-Vmx">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -78,6 +78,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ORv-QE-xid"/>
+                    <connections>
+                        <outlet property="imageView" destination="bdC-sd-IAZ" id="aVw-cY-QGI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSr-WI-qDJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
