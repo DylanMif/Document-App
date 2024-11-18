@@ -38,3 +38,15 @@ Nous venons simplement d'ajouter un NavigationController avant notre TableViewCo
 
 Navigation Controller : Cette classe permet de gérer la pile de vues (pages) et de faciliter la navigation entre elle
 Navigation Bar : C'est une interface visuel permettant d'afficher les informations de navigation (titre, bouton de navigation...) c'est en résumé un context de navigation visuelle
+
+# 6-Ecran Detail
+
+## Exercice 1
+
+Un segue est un élement qui permet de réaliser la transition entre deux controller
+
+Les constraints sont des règles pour déterminer le placement et la taille d'un composant graphique
+
+Elles servent à positionner et dimensionner les éléments et à rendre l'interface réactive
+
+Auto Layout est un mécanisme utilisant les contraintes pour gérer la position et la taille des élements en fonction de l'espace disponible

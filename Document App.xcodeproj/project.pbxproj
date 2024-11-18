@@ -14,6 +14,8 @@
 		A8F5E5DA2CEB247B000B1FB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8F5E5D92CEB247B000B1FB7 /* Assets.xcassets */; };
 		A8F5E5DD2CEB247B000B1FB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8F5E5DB2CEB247B000B1FB7 /* LaunchScreen.storyboard */; };
 		A8F5E5E62CEB4398000B1FB7 /* DocumentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F5E5E52CEB438F000B1FB7 /* DocumentTableViewController.swift */; };
+		A8F5E5E82CEB781F000B1FB7 /* kellen-riggin-ZHnTWmiz000-unsplash.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A8F5E5E72CEB781F000B1FB7 /* kellen-riggin-ZHnTWmiz000-unsplash.jpg */; };
+		A8F5E5EA2CEB784D000B1FB7 /* raymond-petrik-fgITLkxk_QQ-unsplash.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A8F5E5E92CEB784D000B1FB7 /* raymond-petrik-fgITLkxk_QQ-unsplash.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		A8F5E5DE2CEB247B000B1FB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8F5E5E42CEB2570000B1FB7 /* Answers.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Answers.md; sourceTree = "<group>"; };
 		A8F5E5E52CEB438F000B1FB7 /* DocumentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTableViewController.swift; sourceTree = "<group>"; };
+		A8F5E5E72CEB781F000B1FB7 /* kellen-riggin-ZHnTWmiz000-unsplash.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "kellen-riggin-ZHnTWmiz000-unsplash.jpg"; sourceTree = "<group>"; };
+		A8F5E5E92CEB784D000B1FB7 /* raymond-petrik-fgITLkxk_QQ-unsplash.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "raymond-petrik-fgITLkxk_QQ-unsplash.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,8 @@
 				A8F5E5D92CEB247B000B1FB7 /* Assets.xcassets */,
 				A8F5E5DB2CEB247B000B1FB7 /* LaunchScreen.storyboard */,
 				A8F5E5DE2CEB247B000B1FB7 /* Info.plist */,
+				A8F5E5E72CEB781F000B1FB7 /* kellen-riggin-ZHnTWmiz000-unsplash.jpg */,
+				A8F5E5E92CEB784D000B1FB7 /* raymond-petrik-fgITLkxk_QQ-unsplash.jpg */,
 			);
 			path = "Document App";
 			sourceTree = "<group>";
@@ -130,8 +136,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8F5E5E82CEB781F000B1FB7 /* kellen-riggin-ZHnTWmiz000-unsplash.jpg in Resources */,
 				A8F5E5DD2CEB247B000B1FB7 /* LaunchScreen.storyboard in Resources */,
 				A8F5E5DA2CEB247B000B1FB7 /* Assets.xcassets in Resources */,
+				A8F5E5EA2CEB784D000B1FB7 /* raymond-petrik-fgITLkxk_QQ-unsplash.jpg in Resources */,
 				A8F5E5D82CEB2479000B1FB7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

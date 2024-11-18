@@ -16,6 +16,56 @@ extension Int {
 
 class DocumentTableViewController: UITableViewController {
     
+    // A mettre dans votre DocumentTableViewController
+    func listFileInBundle() -> [DocumentFile] {
+            // Init du FileManager (classe permettant de
+            let fm = FileManager.default
+            // Chargement du chemin du bundle principal
+            let path = Bundle.main.resourcePath!
+            // Récupération des fichiers du bundle
+            let items = try! fm.contentsOfDirectory(atPath: path)
+            
+            // Initialisation de la liste des DocumentsFiles
+            var documentListBundle = [DocumentFile]()
+        
+            // Parcours de tous les fichiers récupérés
+            for item in items {
+                // Pn séléctionne les images
+                if !item.hasSuffix("DS_Store") && item.hasSuffix(".jpg") {
+                    // Calcul du chemin du fichier
+                    let currentUrl = URL(fileURLWithPath: path + "/" + item)
+                    // Récupération des différentes informations du fichier (taille, nom)
+                    let resourcesValues = try! currentUrl.resourceValues(forKeys: [.contentTypeKey, .nameKey, .fileSizeKey])
+                       
+                    // On ajoute le DocumentFile à notre liste
+                    documentListBundle.append(DocumentFile(
+                        title: resourcesValues.name!,
+                        size: resourcesValues.fileSize ?? 0,
+                        imageName: item,
+                        url: currentUrl,
+                        type: resourcesValues.contentType!.description)
+                    )
+                }
+            }
+            // On retourne la liste
+            return documentListBundle
+        }
+    
+    func testFile() -> [DocumentFile] {
+        return [
+            DocumentFile(title: "Document 1", size: 100, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
+            DocumentFile(title: "Document 2", size: 200, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
+            DocumentFile(title: "Document 3", size: 300, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
+            DocumentFile(title: "Document 4", size: 400, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
+            DocumentFile(title: "Document 5", size: 500, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
+            DocumentFile(title: "Document 6", size: 600, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
+            DocumentFile(title: "Document 7", size: 700, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
+            DocumentFile(title: "Document 8", size: 800, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
+            DocumentFile(title: "Document 9", size: 900, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
+            DocumentFile(title: "Document 10", size: 1000, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
+        ]
+    }
+    
     
     struct DocumentFile {
         var title: String
@@ -25,21 +75,11 @@ class DocumentTableViewController: UITableViewController {
         var type: String
     }
     
-    public static var documentsFiles = [
-        DocumentFile(title: "Document 1", size: 100, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
-        DocumentFile(title: "Document 2", size: 200, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
-        DocumentFile(title: "Document 3", size: 300, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
-        DocumentFile(title: "Document 4", size: 400, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
-        DocumentFile(title: "Document 5", size: 500, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
-        DocumentFile(title: "Document 6", size: 600, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
-        DocumentFile(title: "Document 7", size: 700, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
-        DocumentFile(title: "Document 8", size: 800, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
-        DocumentFile(title: "Document 9", size: 900, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
-        DocumentFile(title: "Document 10", size: 1000, imageName: nil, url: URL(string: "https://www.apple.com")!, type: "text/plain"),
-    ]
+    public static var documentsFiles: [DocumentFile] = [];
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        DocumentTableViewController.documentsFiles = self.listFileInBundle();
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
