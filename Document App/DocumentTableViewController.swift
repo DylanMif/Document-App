@@ -93,10 +93,16 @@ class DocumentTableViewController: UITableViewController {
     }
     
     public static var documentsFiles: [DocumentFile] = [];
+    
+    @objc public func addDocument() {
+        print("koukou")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         DocumentTableViewController.documentsFiles = self.listFileInBundle();
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addDocument))
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

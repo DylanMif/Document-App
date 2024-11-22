@@ -57,3 +57,16 @@ Auto Layout est un mécanisme utilisant les contraintes pour gérer la position 
 
 Le disclosureIndicator permet d'indiquer à l'utilisateur qu'une action est possible en cliquant sur l'élement de la liste. Vu qu'une action est effectivement 
 effectuée lorsqu'on clique sur une cellule, c'est assez pertinant de l'utiliser.
+
+# 10-Importation
+
+## Questions
+
+Expliquez ce qu’est un #selector en Swift : Une chaîne qui représente la signature d'une méthode générique dans une classe.  
+Que représente .add dans notre appel ? .add permet de choisir le bouton qui sera affiché, ici un petit "+"  
+Expliquez également pourquoi XCode vous demande de mettre le mot clé @objc devant la fonction ciblée par le #selector ? C'est pour que la méthode puisse intéragir avec le runtime 
+Objective - C, car par défaut le code Swift ne pourra intéragir qu'avec du code Swift.
+Peut-on ajouter plusieurs boutons dans la barre de navigation ? Si oui, comment en code ? Oui on peut ajouter plusieur bouton en passant une liste de boutont comme ceci :
+```swift
+navigationItem.rightBarButtonItems = [button1, button2]
+```
