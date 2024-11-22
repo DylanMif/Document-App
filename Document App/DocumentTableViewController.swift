@@ -31,6 +31,45 @@ extension DocumentTableViewController: QLPreviewControllerDataSource {
     }
 }
 
+extension DocumentTableViewController: UIDocumentPickerDelegate {
+    
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        guard let selectedFileURL = urls.first else { return }
+        
+        guard selectedFileURL.startAccessingSecurityScopedResource() else {
+            return
+        }
+
+        defer {
+            selectedFileURL.stopAccessingSecurityScopedResource()
+        }
+        
+        let resourcesValues = try! selectedFileURL.resourceValues(forKeys: [.contentTypeKey, .nameKey, .fileSizeKey])
+        
+        let newDoc = DocumentFile(title: selectedFileURL.lastPathComponent, size: resourcesValues.fileSize ?? 0, imageName: nil, url: selectedFileURL, type: resourcesValues.contentType!.description)
+        
+        
+        DocumentTableViewController.documentsFiles.append(newDoc)
+        self.copyFileToDocumentsDirectory(fromUrl: selectedFileURL)
+        tableView.reloadData()
+    }
+    
+    func copyFileToDocumentsDirectory(fromUrl url: URL) {
+            // On récupère le dossier de l'application, dossier où nous avons le droit d'écrire nos fichiers
+            let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            
+            // Nous créons une URL de destination pour le fichier
+            let destinationUrl = documentsDirectory.appendingPathComponent(url.lastPathComponent)
+            
+            do {
+                // Puis nous copions le fichier depuis l'URL source vers l'URL de destination
+                try FileManager.default.copyItem(at: url, to: destinationUrl)
+            } catch {
+                print(error)
+            }
+        }
+}
+
 class DocumentTableViewController: UITableViewController {
     
     // A mettre dans votre DocumentTableViewController
@@ -95,7 +134,12 @@ class DocumentTableViewController: UITableViewController {
     public static var documentsFiles: [DocumentFile] = [];
     
     @objc public func addDocument() {
-        print("koukou")
+        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.item])
+        documentPicker.delegate = self
+        documentPicker.modalPresentationStyle = .overFullScreen
+
+        present(documentPicker, animated: true)
+
     }
 
     override func viewDidLoad() {
@@ -130,12 +174,6 @@ class DocumentTableViewController: UITableViewController {
        
         cell.textLabel?.text = document.title
         cell.detailTextLabel?.text = "Size: \(document.size.formattedSize())"
-            
-        if let imageName = document.imageName {
-            cell.imageView?.image = UIImage(named: imageName)
-        } else {
-            cell.imageView?.image = nil
-        }
             
         return cell
     }

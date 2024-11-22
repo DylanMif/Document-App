@@ -70,3 +70,5 @@ Peut-on ajouter plusieurs boutons dans la barre de navigation ? Si oui, comment 
 ```swift
 navigationItem.rightBarButtonItems = [button1, button2]
 ```
+A quoi sert la fonction defer ? Le code de la fonction defer s'executera lorsque la méthode, plus préciesement le context, dans lequel il est se termine. 
+Cela permet de s'assurer qu'un bout de code s'executera à la fin de la fonction.
