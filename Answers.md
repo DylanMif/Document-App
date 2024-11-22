@@ -50,3 +50,10 @@ Les constraints sont des règles pour déterminer le placement et la taille d'un
 Elles servent à positionner et dimensionner les éléments et à rendre l'interface réactive
 
 Auto Layout est un mécanisme utilisant les contraintes pour gérer la position et la taille des élements en fonction de l'espace disponible
+
+# 9-QLPreview
+
+## Questions
+
+Le disclosureIndicator permet d'indiquer à l'utilisateur qu'une action est possible en cliquant sur l'élement de la liste. Vu qu'une action est effectivement 
+effectuée lorsqu'on clique sur une cellule, c'est assez pertinant de l'utiliser.

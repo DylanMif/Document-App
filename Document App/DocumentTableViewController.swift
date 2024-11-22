@@ -6,11 +6,28 @@
 //
 
 import UIKit
+import QuickLook
+
 
 extension Int {
     func formattedSize() -> String {
         let formatter:ByteCountFormatter = ByteCountFormatter()
         return formatter.string(fromByteCount: Int64(self))
+    }
+}
+
+extension DocumentTableViewController: QLPreviewControllerDataSource {
+
+    // Cette méthode est utilisée pour définir combien d'éléments à prévisualiser.
+    func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
+        return 1
+    }
+
+    // Cette méthode fournit l'élément à prévisualiser (ici, l'URL du fichier).
+    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+        // On retourne l'URL du fichier sélectionné
+        let selectedDocument = DocumentTableViewController.documentsFiles[tableView.indexPathForSelectedRow!.row]
+        return selectedDocument.url as QLPreviewItem
     }
 }
 
@@ -116,50 +133,19 @@ class DocumentTableViewController: UITableViewController {
             
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+           // Initialiser un QLPreviewController
+            let previewController = QLPreviewController()
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
+            // Définir le delegate et la source de données
+            previewController.dataSource = self
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+            // Passer l'URL du fichier à prévisualiser
+            previewController.currentPreviewItemIndex = indexPath.row
+            
+            // Pousser le QLPreviewController
+            self.navigationController?.pushViewController(previewController, animated: true)
+        }
 
 }

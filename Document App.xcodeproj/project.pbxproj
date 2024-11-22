@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A866FBC62CF06E290063A993 /* landscape-with-mountain-lake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A866FBC52CF06E280063A993 /* landscape-with-mountain-lake.jpg */; };
+		A866FBC82CF06EA40063A993 /* nature-ecology-vacation-holiday-trip-serenity-concept.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A866FBC72CF06EA40063A993 /* nature-ecology-vacation-holiday-trip-serenity-concept.jpg */; };
+		A866FBCA2CF06F530063A993 /* closeup-forest-foliage-tree-generative-al.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A866FBC92CF06F530063A993 /* closeup-forest-foliage-tree-generative-al.jpg */; };
 		A8F5E5D12CEB2479000B1FB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F5E5D02CEB2479000B1FB7 /* AppDelegate.swift */; };
 		A8F5E5D32CEB2479000B1FB7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F5E5D22CEB2479000B1FB7 /* SceneDelegate.swift */; };
 		A8F5E5D52CEB2479000B1FB7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F5E5D42CEB2479000B1FB7 /* ViewController.swift */; };
@@ -20,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A866FBC52CF06E280063A993 /* landscape-with-mountain-lake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "landscape-with-mountain-lake.jpg"; sourceTree = "<group>"; };
+		A866FBC72CF06EA40063A993 /* nature-ecology-vacation-holiday-trip-serenity-concept.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "nature-ecology-vacation-holiday-trip-serenity-concept.jpg"; sourceTree = "<group>"; };
+		A866FBC92CF06F530063A993 /* closeup-forest-foliage-tree-generative-al.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "closeup-forest-foliage-tree-generative-al.jpg"; sourceTree = "<group>"; };
 		A8F5E5CD2CEB2479000B1FB7 /* Document App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Document App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8F5E5D02CEB2479000B1FB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8F5E5D22CEB2479000B1FB7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +83,9 @@
 				A8F5E5DE2CEB247B000B1FB7 /* Info.plist */,
 				A8F5E5E72CEB781F000B1FB7 /* kellen-riggin-ZHnTWmiz000-unsplash.jpg */,
 				A8F5E5E92CEB784D000B1FB7 /* raymond-petrik-fgITLkxk_QQ-unsplash.jpg */,
+				A866FBC52CF06E280063A993 /* landscape-with-mountain-lake.jpg */,
+				A866FBC72CF06EA40063A993 /* nature-ecology-vacation-holiday-trip-serenity-concept.jpg */,
+				A866FBC92CF06F530063A993 /* closeup-forest-foliage-tree-generative-al.jpg */,
 			);
 			path = "Document App";
 			sourceTree = "<group>";
@@ -139,10 +148,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A866FBC82CF06EA40063A993 /* nature-ecology-vacation-holiday-trip-serenity-concept.jpg in Resources */,
+				A866FBCA2CF06F530063A993 /* closeup-forest-foliage-tree-generative-al.jpg in Resources */,
 				A8F5E5E82CEB781F000B1FB7 /* kellen-riggin-ZHnTWmiz000-unsplash.jpg in Resources */,
 				A8F5E5DD2CEB247B000B1FB7 /* LaunchScreen.storyboard in Resources */,
 				A8F5E5DA2CEB247B000B1FB7 /* Assets.xcassets in Resources */,
 				A8F5E5EA2CEB784D000B1FB7 /* raymond-petrik-fgITLkxk_QQ-unsplash.jpg in Resources */,
+				A866FBC62CF06E290063A993 /* landscape-with-mountain-lake.jpg in Resources */,
 				A8F5E5D82CEB2479000B1FB7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

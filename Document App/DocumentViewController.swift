@@ -6,14 +6,27 @@
 //
 
 import UIKit
+import QuickLook
 
-class DocumentViewController: UIViewController {
-    @IBOutlet weak var imageView: UIImageView!
+
+class DocumentViewController: UIViewController, QLPreviewControllerDataSource {
+    var documentURL: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let previewController = QLPreviewController()
+        previewController.dataSource = self
+        navigationController?.pushViewController(previewController, animated: true)
         // Do any additional setup after loading the view.
+    }
+    
+    func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
+        return 1
+    }
+    
+    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+        return documentURL! as QLPreviewItem
     }
     
 
