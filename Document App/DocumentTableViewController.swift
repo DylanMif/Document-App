@@ -26,7 +26,7 @@ extension DocumentTableViewController: QLPreviewControllerDataSource {
     // Cette méthode fournit l'élément à prévisualiser (ici, l'URL du fichier).
     func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
         // On retourne l'URL du fichier sélectionné
-        let selectedDocument = DocumentTableViewController.documentsFiles[tableView.indexPathForSelectedRow!.row]
+        let selectedDocument = DocumentTableViewController.documentsFiles[tableView.indexPathForSelectedRow!.section][tableView.indexPathForSelectedRow!.row]
         return selectedDocument.url as QLPreviewItem
     }
 }
@@ -49,7 +49,7 @@ extension DocumentTableViewController: UIDocumentPickerDelegate {
         let newDoc = DocumentFile(title: selectedFileURL.lastPathComponent, size: resourcesValues.fileSize ?? 0, imageName: nil, url: selectedFileURL, type: resourcesValues.contentType!.description)
         
         
-        DocumentTableViewController.documentsFiles.append(newDoc)
+        DocumentTableViewController.documentsFiles[1].append(newDoc)
         self.copyFileToDocumentsDirectory(fromUrl: selectedFileURL)
         tableView.reloadData()
     }
@@ -131,7 +131,9 @@ class DocumentTableViewController: UITableViewController {
         var type: String
     }
     
-    public static var documentsFiles: [DocumentFile] = [];
+    public static var documentsFiles: [[DocumentFile]] = [
+    [],
+    []];
     
     @objc public func addDocument() {
         let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.item])
@@ -144,7 +146,7 @@ class DocumentTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        DocumentTableViewController.documentsFiles = self.listFileInBundle();
+        DocumentTableViewController.documentsFiles[0] = self.listFileInBundle();
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addDocument))
 
@@ -159,18 +161,18 @@ class DocumentTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return DocumentTableViewController.documentsFiles.count
+        return DocumentTableViewController.documentsFiles[section].count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DocumentCell", for: indexPath)
      
-        let document = DocumentTableViewController.documentsFiles[indexPath.row]
+        let document = DocumentTableViewController.documentsFiles[indexPath.section][indexPath.row]
        
         cell.textLabel?.text = document.title
         cell.detailTextLabel?.text = "Size: \(document.size.formattedSize())"
@@ -190,6 +192,18 @@ class DocumentTableViewController: UITableViewController {
             
             // Pousser le QLPreviewController
             self.navigationController?.pushViewController(previewController, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Bundle"
+        case 1:
+            return "Importés"
+        default:
+            return nil
         }
+    }
+
 
 }
