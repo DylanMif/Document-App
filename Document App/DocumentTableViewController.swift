@@ -26,7 +26,7 @@ extension DocumentTableViewController: QLPreviewControllerDataSource {
     // Cette méthode fournit l'élément à prévisualiser (ici, l'URL du fichier).
     func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
         // On retourne l'URL du fichier sélectionné
-        let selectedDocument = DocumentTableViewController.documentsFiles[tableView.indexPathForSelectedRow!.section][tableView.indexPathForSelectedRow!.row]
+        let selectedDocument = filteredFiles[tableView.indexPathForSelectedRow!.section][tableView.indexPathForSelectedRow!.row]
         return selectedDocument.url as QLPreviewItem
     }
 }
@@ -50,6 +50,7 @@ extension DocumentTableViewController: UIDocumentPickerDelegate {
         
         
         DocumentTableViewController.documentsFiles[1].append(newDoc)
+        filteredFiles[1].append(newDoc)
         self.copyFileToDocumentsDirectory(fromUrl: selectedFileURL)
         tableView.reloadData()
     }
@@ -70,7 +71,7 @@ extension DocumentTableViewController: UIDocumentPickerDelegate {
         }
 }
 
-class DocumentTableViewController: UITableViewController {
+class DocumentTableViewController: UITableViewController, UISearchBarDelegate {
     
     // A mettre dans votre DocumentTableViewController
     func listFileInBundle() -> [DocumentFile] {
@@ -135,6 +136,9 @@ class DocumentTableViewController: UITableViewController {
     [],
     []];
     
+    var filteredFiles = [[DocumentFile]]()
+    var isSearching = false
+    
     @objc public func addDocument() {
         let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.item])
         documentPicker.delegate = self
@@ -149,6 +153,13 @@ class DocumentTableViewController: UITableViewController {
         DocumentTableViewController.documentsFiles[0] = self.listFileInBundle();
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addDocument))
+        
+        filteredFiles = DocumentTableViewController.documentsFiles
+        
+        let searchBar = UISearchBar()
+        searchBar.delegate = self
+        searchBar.placeholder = "Rechercher un document"
+        navigationItem.titleView = searchBar
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -156,6 +167,34 @@ class DocumentTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    // MARK: - Search Bar Delegate
+
+        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            filterDocuments(searchText: searchText)
+        }
+        
+        func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+            searchBar.text = ""
+            filterDocuments(searchText: "")
+        }
+    
+    func filterDocuments(searchText: String) {
+            if searchText.isEmpty {
+                filteredFiles = DocumentTableViewController.documentsFiles // Afficher tous les fichiers
+            } else {
+                filteredFiles = [[], []]
+                filteredFiles[0] = DocumentTableViewController.documentsFiles[0].filter {document in
+                    // Comparaison des titres des documents avec le texte de recherche
+                    return document.title.lowercased().contains(searchText.lowercased())
+                }
+                filteredFiles[1] = DocumentTableViewController.documentsFiles[1].filter {document in
+                    // Comparaison des titres des documents avec le texte de recherche
+                    return document.title.lowercased().contains(searchText.lowercased())
+                }
+            }
+            tableView.reloadData()
+        }
 
     // MARK: - Table view data source
 
@@ -166,13 +205,13 @@ class DocumentTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return DocumentTableViewController.documentsFiles[section].count
+        return filteredFiles[section].count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DocumentCell", for: indexPath)
      
-        let document = DocumentTableViewController.documentsFiles[indexPath.section][indexPath.row]
+        let document = filteredFiles[indexPath.section][indexPath.row]
        
         cell.textLabel?.text = document.title
         cell.detailTextLabel?.text = "Size: \(document.size.formattedSize())"
